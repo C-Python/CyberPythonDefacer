@@ -9,12 +9,17 @@ except ImportError:
 
 banner = """
 
- █████╗ ██╗  ██╗██████╗  Author : Ms.ambari
-██╔══██╗╚██╗██╔╝██╔══██╗ Date   : 2018-12-01
-███████║ ╚███╔╝ ██║  ██║ Tools  : aoXdeface V.1.0
-██╔══██║ ██╔██╗ ██║  ██║ Github : /Mr-xDODOL
-██║  ██║██╔╝ ██╗██████╔╝ youtube: DANIEL IHS
-╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
+ █  /$$$$$$            /$$$$$$$ Author: CyberPython
+ /$$__  $$          | $$__  $$ Date: 29/08/2020
+| $$  \__/  /$$$$$$ | $$  \ $$ Tools: CyberPythonDefacer
+| $$       /$$__  $$| $$  | $$ Github: /C-Python
+| $$      | $$  \ $$| $$  | $$ Facebook: /cp2k20
+| $$    $$| $$  | $$| $$  | $$ Instagram: /cyberpythonofficial
+|  $$$$$$/| $$$$$$$/| $$$$$$$/
+ \______/ | $$____/ |_______/ 
+          | $$                
+          | $$                
+          |__/                 
 """
 
 b = '\033[31m'
