@@ -35,7 +35,7 @@ def x(tetew):
    
    return str(ipt)
 
-def aox(script,target_file="target.txt"):
+def CpD(script,target_file="target.txt"):
    op = open(script,"r").read()
    with open(target_file, "r") as target:
       target = target.readlines()
@@ -70,7 +70,7 @@ def main(__bn__):
       except KeyboardInterrupt:
          print; exit()
 
-   aox(a)
+   CpD(a)
 
 if __name__ == "__main__":
     main(banner)
